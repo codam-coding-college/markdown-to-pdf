@@ -7,7 +7,8 @@ if (process.argv.length < 3) {
 	process.exit(1)
 }
 
-const fileName = process.argv[2]?.replace(/\.[^/.]+$/, '')
+const pwd: string = process.cwd()
+const fileName: string = process.argv[2]!.replace(/\.[^/.]+$/, '')
 
-fs.writeFileSync(`${fileName}.html`, markdownToHTML(process.argv[2]!))
-htmlToPdf(`${fileName}.html`, `${fileName}.pdf`)
+fs.writeFileSync(`${pwd}/${fileName}.html`, markdownToHTML(`${pwd}/${process.argv[2]}`))
+htmlToPdf(`${pwd}/${fileName}.html`, `${pwd}/${fileName}.pdf`)

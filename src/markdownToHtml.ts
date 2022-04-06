@@ -17,10 +17,10 @@ export function markdownToHTML(path: string) {
 		<title> </title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<style type='text/css'>
-			${fs.readFileSync(`static/highlight.js/stackoverflow-light.min.css`).toString()}
+			${fs.readFileSync(`${__dirname}/../static/highlight.js/stackoverflow-light.min.css`).toString()}
 		</style>
 		<script>
-			${fs.readFileSync(`static/highlight.js/highlight.min.js`).toString()}
+			${fs.readFileSync(`${__dirname}/../static/highlight.js/highlight.min.js`).toString()}
 		</script>
 	</head>
 	<body>
@@ -28,7 +28,7 @@ export function markdownToHTML(path: string) {
 			${converter.makeHtml(readmeFile)}
 		</div>
 		<style type='text/css'>
-			${fs.readFileSync(`style.css`).toString()}
+			${fs.readFileSync(`${__dirname}/../static/style.css`).toString()}
 		</style>
 		<script>
 			hljs.highlightAll()
