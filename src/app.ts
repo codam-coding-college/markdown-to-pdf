@@ -7,7 +7,7 @@ if (process.argv.length < 3) {
 	process.exit(1)
 }
 
-const pwd: string = process.cwd()
+const pwd: string = (process.argv[2]![0] == '/' ? '' : process.cwd())
 const fileName: string = process.argv[2]!.replace(/\.[^/.]+$/, '')
 
 fs.writeFileSync(`${pwd}/${fileName}.html`, markdownToHTML(`${pwd}/${process.argv[2]}`))
