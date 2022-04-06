@@ -1,9 +1,6 @@
 import showdown from 'showdown'
 import fs from 'fs'
 
-let pageTitle = process.argv[2] || ''
-const styleData = fs.readFileSync(`style.css`).toString()
-
 const converter = new showdown.Converter({
 	ghCompatibleHeaderId: true,
 	simpleLineBreaks: true,
@@ -17,14 +14,25 @@ export function markdownToHTML(path: string) {
 	return `
 <html>
 	<head>
-	<title> ${pageTitle} </title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title> </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style type='text/css'>
+			${fs.readFileSync(`static/highlight.js/stackoverflow-light.min.css`).toString()}
+		</style>
+		<script>
+			${fs.readFileSync(`static/highlight.js/highlight.min.js`).toString()}
+		</script>
 	</head>
 	<body>
 		<div id='content'>
 			${converter.makeHtml(readmeFile)}
 		</div>
-		<style type='text/css'>` + styleData + `</style>
+		<style type='text/css'>
+			${fs.readFileSync(`style.css`).toString()}
+		</style>
+		<script>
+			hljs.highlightAll()
+		</script>
 	</body>
 </html>
 `
