@@ -8,4 +8,4 @@ This script converts markdown files (.md) to pdf files styled like GitHub
 ## Usage
 `npm install`\
 `npm run build`\
-`node build/app.js input.md output.md`
+`node build/app.js input.md output.pdf`
