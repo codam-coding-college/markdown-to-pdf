@@ -11,6 +11,8 @@ const pwd = process.argv[2]![0] == '/' ? '' : process.cwd()
 const inputPath = `${pwd}/${process.argv[2]!}`
 const htmlPath = `${inputPath}.html`
 const outputPath = process.argv[3] ? `${pwd}/${process.argv[3]!}` : inputPath.replace(/\.[^/.]+$/, '.pdf');
+if (outputPath.includes('/'))
+	fs.mkdirSync(outputPath.split('/').slice(0, -1).join('/'), { recursive: true });
 
 (async () => {
 	console.log(`Reading: ${inputPath}`)
