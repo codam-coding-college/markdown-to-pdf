@@ -10,7 +10,7 @@ const converter = new showdown.Converter({
 converter.setFlavor('github')
 
 export function markdownToHTML(path: string) {
-	const readmeFile = fs.readFileSync(path).toString()
+	const readmeFile = fs.readFileSync(path).toString().replace(/\\\n/g, '\n')
 	return `
 <html>
 	<head>
@@ -25,7 +25,7 @@ export function markdownToHTML(path: string) {
 	</head>
 	<body>
 		<div id='content'>
-			${converter.makeHtml(readmeFile)}
+			${converter.makeHtml(readmeFile).replaceAll('&lt;br /&gt;', '<br>')}
 		</div>
 		<style type='text/css'>
 			${fs.readFileSync(`${__dirname}/../static/style.css`).toString()}
